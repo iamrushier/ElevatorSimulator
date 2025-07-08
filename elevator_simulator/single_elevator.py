@@ -3,7 +3,7 @@ import time
 import threading as th
 from PIL import Image,ImageTk
 window=tk.Tk()
-window.config(bg='blue')
+window.config(bg='#2c3e50')
 FLOORS=(0,1,2,3,4)
 WEIGHT_LIMIT=550
 current_weight=500
@@ -12,7 +12,7 @@ direction=None
 up_queue=list()
 down_queue=list()
 cart_position=0
-color='yellow' 
+color='#3498db'  # blue 
 delay=5000
   
 def update_position():
@@ -36,7 +36,7 @@ def update_position():
     texts[cart_position].config(bg=color)
     for x in range(5):
         if x==cart_position: continue
-        texts[x].config(bg='white')
+        texts[x].config(bg='#ecf0f1')
     
 
 def change_direction():
@@ -80,9 +80,9 @@ def open_door(num):
 
 def fans():
     if not (up_queue or down_queue):
-        fan_label.config(bg="yellow")
+        fan_label.config(bg="#00FF00")
     else:
-        fan_label.config(bg="green")
+        fan_label.config(bg="#00FF00")
 
 def add_to_up_queue(floor):  
     global up_queue
@@ -108,7 +108,7 @@ def process():
                 del up_queue[0]
             else:
                 delay=5000
-                color='yellow'
+                color='#f39c12'  # softer amber
         elif direction=='DOWN' and down_queue:
             change_direction()
             cart_position-=1
@@ -119,7 +119,7 @@ def process():
                 del down_queue[0]
             else:
                 delay=5000
-                color='yellow'
+                color='#f39c12'  # softer amber
        # update_position()#
         start_moving()
     
@@ -376,20 +376,20 @@ def pressed_0():
         add_to_down_queue(0)
     update_position()#    
     
-frame_0=tk.Frame(window,bg='light blue')
+frame_0=tk.Frame(window,bg='#bdc3c7')
 frame_0.grid(row=0,column=0,padx=5,pady=5,sticky='ns')
 y=45
-label_4=tk.Label(frame_0,text='4',bg='blue',fg='yellow')
+label_4=tk.Label(frame_0,text='4',bg='blue',fg='#ecf0f1')
 label_4.grid(row=0,column=0,padx=2,pady=y)
-label_3=tk.Label(frame_0,text='3',bg='blue',fg='yellow')
+label_3=tk.Label(frame_0,text='3',bg='blue',fg='#ecf0f1')
 label_3.grid(row=2,column=0,padx=2,pady=y)
-label_2=tk.Label(frame_0,text='2',bg='blue',fg='yellow')
+label_2=tk.Label(frame_0,text='2',bg='blue',fg='#ecf0f1')
 label_2.grid(row=4,column=0,padx=2,pady=y)
-label_1=tk.Label(frame_0,text='1',bg='blue',fg='yellow')
+label_1=tk.Label(frame_0,text='1',bg='blue',fg='#ecf0f1')
 label_1.grid(row=6,column=0,padx=2,pady=y)
-label_0=tk.Label(frame_0,text='0',bg='blue',fg='yellow')
+label_0=tk.Label(frame_0,text='0',bg='#606060',fg='#ecf0f1')
 label_0.grid(row=8,column=0,padx=2,pady=y)
-frame_1=tk.Frame(window,bg='red')
+frame_1=tk.Frame(window,bg='#bdc3c7')
 frame_1.grid(row=0,column=1,padx=5,pady=5)
 text_4=tk.Text(frame_1,height=5,width=8)
 text_4.pack(side=tk.TOP,padx=5,pady=15)
@@ -402,7 +402,7 @@ text_1.pack(side=tk.TOP,padx=5,pady=15)
 text_0=tk.Text(frame_1,height=5,width=8)
 text_0.pack(side=tk.TOP,padx=5,pady=15)
 texts=(text_0,text_1,text_2,text_3,text_4)
-frame_2=tk.Frame(window,bg='red')
+frame_2=tk.Frame(window,bg='#bdc3c7')
 frame_2.grid(row=0,column=2,padx=5,pady=5)
 DownT=Image.open("assets/down_arrow.png")
 DownT=DownT.resize((30,30))
@@ -410,50 +410,50 @@ DownT=ImageTk.PhotoImage(DownT)
 UpT=Image.open("assets/up_arrow.png")
 UpT=UpT.resize((30,30))
 UpT=ImageTk.PhotoImage(UpT)
-btn_4u=tk.Button(frame_2,text=' ',height=1,width=4,borderwidth=0,bg='red')
+btn_4u=tk.Button(frame_2,text=' ',height=1,width=4,borderwidth=0,bg='#2980b9')
 btn_4u.pack(side=tk.TOP,padx=5,pady=5)
-btn_4d=tk.Button(frame_2,image=DownT,height=23,width=40,borderwidth=0,bg='red',command=request_4_down)
+btn_4d=tk.Button(frame_2,image=DownT,height=23,width=40,borderwidth=0,bg='#2980b9',command=request_4_down)
 btn_4d.pack(side=tk.TOP,padx=5,pady=15)
-btn_3u=tk.Button(frame_2,image=UpT,height=20,width=40,borderwidth=0,bg='red',command=request_3_up)
+btn_3u=tk.Button(frame_2,image=UpT,height=20,width=40,borderwidth=0,bg='#2980b9',command=request_3_up)
 btn_3u.pack(side=tk.TOP,padx=5,pady=15)
-btn_3d=tk.Button(frame_2,image=DownT,height=25,width=40,borderwidth=0,bg='red',command=request_3_down)
+btn_3d=tk.Button(frame_2,image=DownT,height=25,width=40,borderwidth=0,bg='#2980b9',command=request_3_down)
 btn_3d.pack(side=tk.TOP,padx=5,pady=15)
-btn_2u=tk.Button(frame_2,image=UpT,height=23,width=40,borderwidth=0,bg='red',command=request_2_up)
+btn_2u=tk.Button(frame_2,image=UpT,height=23,width=40,borderwidth=0,bg='#2980b9',command=request_2_up)
 btn_2u.pack(side=tk.TOP,padx=5,pady=15)
-btn_2d=tk.Button(frame_2,image=DownT,height=25,width=40,borderwidth=0,bg='red',command=request_2_down)
+btn_2d=tk.Button(frame_2,image=DownT,height=25,width=40,borderwidth=0,bg='#2980b9',command=request_2_down)
 btn_2d.pack(side=tk.TOP,padx=5,pady=15)
-btn_1u=tk.Button(frame_2,image=UpT,height=25,width=40,borderwidth=0,bg='red',command=request_1_up)
+btn_1u=tk.Button(frame_2,image=UpT,height=25,width=40,borderwidth=0,bg='#2980b9',command=request_1_up)
 btn_1u.pack(side=tk.TOP,padx=5,pady=15)
-btn_1d=tk.Button(frame_2,image=DownT,height=27,width=40,borderwidth=0,bg='red',command=request_1_down)
+btn_1d=tk.Button(frame_2,image=DownT,height=27,width=40,borderwidth=0,bg='#2980b9',command=request_1_down)
 btn_1d.pack(side=tk.TOP,padx=5,pady=15)
-btn_0u=tk.Button(frame_2,image=UpT,height=25,width=40,borderwidth=0,bg='red',command=request_0_up)
+btn_0u=tk.Button(frame_2,image=UpT,height=25,width=40,borderwidth=0,bg='#2980b9',command=request_0_up)
 btn_0u.pack(side=tk.TOP,padx=5,pady=15)
-btn_0d=tk.Button(frame_2,text=' ',height=1,width=4,borderwidth=0,bg='red')
-btn_0d.pack(side=tk.TOP,padx=5,pady=10)
-frame_3=tk.Frame(window,bg='red')
+btn_0d=tk.Button(frame_2,text=' ',height=1,width=4,borderwidth=0,bg='#2980b9')
+btn_0d.pack(side=tk.TOP,padx=5,pady=15)
+frame_3=tk.Frame(window,bg='#95a5a6')
 frame_3.grid(row=0,column=3,padx=5,pady=5)
-btn_3=tk.Button(frame_3,text='3',bg='yellow',command=pressed_3)
+btn_3=tk.Button(frame_3,text='3',bg='#3498db', fg='white',command=pressed_3)
 btn_3.grid(row=0,column=0, padx=5,pady=5)
-btn_4=tk.Button(frame_3,text='4',bg='yellow',command=pressed_4)
+btn_4=tk.Button(frame_3,text='4',bg='#3498db', fg='white',command=pressed_4)
 btn_4.grid(row=0,column=1, padx=5,pady=5)
-btn_1=tk.Button(frame_3,text='1',bg='yellow',command=pressed_1)
+btn_1=tk.Button(frame_3,text='1',bg='#3498db', fg='white',command=pressed_1)
 btn_1.grid(row=1,column=0, padx=5,pady=5)
-btn_2=tk.Button(frame_3,text='2',bg='yellow',command=pressed_2)
+btn_2=tk.Button(frame_3,text='2',bg='#3498db', fg='white',command=pressed_2)
 btn_2.grid(row=1,column=1 ,padx=5,pady=5)
-btn_0=tk.Button(frame_3,text='0',bg='yellow',command=pressed_0)
+btn_0=tk.Button(frame_3,text='0',bg='#3498db', fg='white',command=pressed_0)
 btn_0.grid(row=2,column=0, padx=5,pady=5)
-btn_go=tk.Button(frame_3,text='Go',bg='yellow',command=call_start_moving)
+btn_go=tk.Button(frame_3,text='Go',bg='#A0A0A0',fg='black',command=call_start_moving)
 btn_go.grid(row=2,column=1, padx=5,pady=5)
 progress_text=tk.Text(frame_3,width=15,height=20)
 progress_text.grid(row=3,column=0,columnspan=2,padx=5,pady=5)
 direction_text=tk.Text(frame_3,width=15,height=5)
 direction_text.grid(row=4,column=0,columnspan=2,padx=5,pady=5)
-frame_4=tk.Frame(frame_3,bg='black')
+frame_4=tk.Frame(frame_3,bg='#606060')
 frame_4.grid(row=5,column=0,columnspan=2,padx=5,pady=5)
 fan=Image.open("assets/fan.png")
 fan1=fan.resize((40,40))
 fan1=ImageTk.PhotoImage(fan1)
-fan_label=tk.Label(frame_4,bg='yellow',image=fan1,height=50,width=50)
+fan_label=tk.Label(frame_4,bg='#A0A0A0',image=fan1,height=50,width=50)
 fan_label.pack(padx=5,pady=5)
 update_position()  
 window.mainloop()
